@@ -1,0 +1,29 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+import { All, Controller, Inject, OnModuleInit } from '@nestjs/common';
+import { renderTrpcPanel } from 'trpc-panel';
+import { AnyRouter } from '@trpc/server';
+import { AppRouterHost } from 'nestjs-trpc';
+
+@Controller({
+  path: '/trpc',
+  version: '1',
+})
+export class TrpcPanelController implements OnModuleInit {
+  private appRouter!: AnyRouter;
+
+  constructor(
+    @Inject(AppRouterHost) private readonly appRouterHost: AppRouterHost,
+  ) {}
+
+  onModuleInit() {
+    this.appRouter = this.appRouterHost.appRouter;
+  }
+
+  @All('/panel')
+  panel(): string {
+    return renderTrpcPanel(this.appRouter, {
+      url: 'http://localhost:3000/trpc',
+    });
+  }
+}

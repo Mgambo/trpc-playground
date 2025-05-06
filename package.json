@@ -1,0 +1,14 @@
+{
+  "workspaces": [
+    "./backend_nest",
+    "./frontend_next"
+  ],
+  "scripts": {
+    "dev:frontend": "pnpm run --r --filter \"./frontend_next\" dev -p 3001",
+    "dev:backend": "pnpm run --r --filter \"./backend_nest\" start:dev",
+    "dev": "concurrently --kill-others \"pnpm dev:frontend\" \"pnpm dev:backend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
