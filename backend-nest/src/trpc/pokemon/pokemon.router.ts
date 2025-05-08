@@ -1,10 +1,10 @@
 import { Router, Query, UseMiddlewares, Input } from 'nestjs-trpc';
 import { pokemonSchema, pokemonsSchema } from './pokemon.schema';
-import { LoggerMiddleware } from '../middlewares/logger.middleware';
+import { TrpcLoggerMiddleware } from '../../middleware/logger.middleware/trpc.logger.middleware';
 import { z } from 'zod';
 
 @Router({ alias: 'pokemons' })
-@UseMiddlewares(LoggerMiddleware)
+@UseMiddlewares(TrpcLoggerMiddleware)
 export class PokemonRouter {
   constructor() {}
 

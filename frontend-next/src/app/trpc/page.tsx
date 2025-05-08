@@ -3,13 +3,18 @@ import useGetPokemons from "@/queries/useGetPokemons";
 import { Suspense } from "react";
 
 export default function TRpc() {
-  const { data } = useGetPokemons();
-  console.log("reset::", JSON.stringify(data));
+  const { data: pokemons } = useGetPokemons();
+  // pokemons.map((pokemon) => console.log(pokemon.name));
   return (
     <Suspense fallback={<div>loading ... </div>}>
       <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
         <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-          TRPC
+          {pokemons &&
+            pokemons.map((pokemon) => (
+              <div key={pokemon.name} className="flex flex-row gap-2">
+                <a href={pokemon.url}>{pokemon.name}</a>
+              </div>
+            ))}
         </main>
       </div>
     </Suspense>

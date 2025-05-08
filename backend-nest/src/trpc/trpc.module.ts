@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { TrpcPanelController } from './trpc-panel.controller';
 import { PokemonRouter } from './pokemon/pokemon.router';
 import { TRPCModule } from 'nestjs-trpc';
-import { LoggerMiddleware } from './middlewares/logger.middleware';
+import { TrpcLoggerMiddleware } from '../middleware/logger.middleware/trpc.logger.middleware';
 import { AppContext } from './context/app.context';
 
 @Module({
@@ -16,6 +16,6 @@ import { AppContext } from './context/app.context';
     }),
   ],
   controllers: [TrpcPanelController],
-  providers: [LoggerMiddleware, PokemonRouter, AppContext],
+  providers: [TrpcLoggerMiddleware, PokemonRouter, AppContext],
 })
 export class TrpcModule {}

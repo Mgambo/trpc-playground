@@ -4,11 +4,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Injectable, Logger } from '@nestjs/common';
 import { MiddlewareOptions, TRPCMiddleware } from 'nestjs-trpc';
-import { IAppContext } from '../context/context.interface';
+import { IAppContext } from '../../trpc/context/context.interface';
 
 @Injectable()
-export class LoggerMiddleware implements TRPCMiddleware {
-  private readonly logger = new Logger(LoggerMiddleware.name);
+export class TrpcLoggerMiddleware implements TRPCMiddleware {
+  private readonly logger = new Logger(TrpcLoggerMiddleware.name);
 
   async use(opts: MiddlewareOptions<IAppContext>) {
     const start = Date.now();

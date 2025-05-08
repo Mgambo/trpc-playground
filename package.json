@@ -4,9 +4,12 @@
     "./frontend_next"
   ],
   "scripts": {
-    "dev:frontend": "pnpm run --r --filter \"./frontend_next\" dev -p 3001",
-    "dev:backend": "pnpm run --r --filter \"./backend_nest\" start:dev",
-    "dev": "concurrently --kill-others \"pnpm dev:frontend\" \"pnpm dev:backend\""
+    "dev:frontend": "pnpm run --r --filter \"./frontend-next\" dev -p 3001",
+    "dev:backend": "pnpm run --r --filter \"./backend-nest\" start:dev",
+    "build:frontend": "pnpm run --r --filter \"./frontend-next\" build",
+    "build:backend": "pnpm run --r --filter \"./backend-nest\" build",
+    "dev": "concurrently --kill-others \"pnpm dev:frontend\" \"pnpm dev:backend\"",
+    "build": "pnpm build:backend & pnpm build:frontend"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
