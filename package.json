@@ -8,6 +8,9 @@
     "dev:backend": "pnpm run --r --filter \"./backend-nest\" start:dev",
     "build:frontend": "pnpm run --r --filter \"./frontend-next\" build",
     "build:backend": "pnpm run --r --filter \"./backend-nest\" build",
+    "prod:backend": "NODE_ENV=production pnpm run --r --filter \"./backend-nest\" start:prod",
+    "prod:frontend": "NODE_ENV=production pnpm run --r --filter \"./frontend-next\" start -p 3001",
+    "prod": "concurrently --kill-others \"pnpm prod:frontend\" \"pnpm prod:backend\"",
     "dev": "concurrently --kill-others \"pnpm dev:frontend\" \"pnpm dev:backend\"",
     "build": "pnpm build:backend & pnpm build:frontend"
   },
